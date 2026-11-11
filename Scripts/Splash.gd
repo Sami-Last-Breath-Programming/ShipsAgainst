@@ -15,3 +15,8 @@ func _ready() -> void:
 	
 	# Increase alpha to 1
 	anim.tween_property(company, "modulate:a", 1.0, 4.0)
+
+	# Go to main menu
+	anim.finished.connect(func():
+		get_tree().change_scene_to_packed(Loader.mainMenu);	
+	)

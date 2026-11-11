@@ -1,0 +1,293 @@
+[gd_scene format=3 uid="uid://bo6qvggsuoj4c"]
+
+[ext_resource type="Shader" uid="uid://c4182hdhir1rw" path="res://Shaders/Water.gdshader" id="1_tt5f1"]
+[ext_resource type="FontFile" uid="uid://ilhb8n1el5ev" path="res://Fonts/ArchivoBlack-Regular.ttf" id="2_853f1"]
+[ext_resource type="Texture2D" uid="uid://dmcyg5vuy8b3i" path="res://Assets/Ships/Sprites/Ship12.png" id="2_loo7a"]
+[ext_resource type="Texture2D" uid="uid://k02n8ktuanxv" path="res://Assets/MainMenu/normal.png" id="3_ghw46"]
+[ext_resource type="Texture2D" uid="uid://bewe06wapdshm" path="res://Assets/Ships/Sprites/Ship8.png" id="3_if7li"]
+[ext_resource type="Texture2D" uid="uid://ylbjt5omave2" path="res://Assets/MainMenu/clicked.png" id="4_ghw46"]
+[ext_resource type="Texture2D" uid="uid://bx4m6q46vwvao" path="res://Assets/MainMenu/misic.png" id="5_df05h"]
+[ext_resource type="Texture2D" uid="uid://bjwpb4dqhefgr" path="res://Assets/MainMenu/misicClicked.png" id="6_8um5k"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_853f1"]
+fractal_weighted_strength = 0.4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tt5f1"]
+noise = SubResource("FastNoiseLite_853f1")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bnhvo"]
+shader = ExtResource("1_tt5f1")
+shader_parameter/water_color = Color(7.70092e-07, 0.4089775, 0.57616246, 1)
+shader_parameter/sun_color = Color(3.3691526e-06, 0.50162697, 0.6997067, 1)
+shader_parameter/speed = Vector2(0.04, 0.04)
+shader_parameter/scale = 1.0
+shader_parameter/intensity = 1.20000005374012
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_tt5f1")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8um5k"]
+bg_color = Color(0.9764706, 0, 0.13725491, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 20.0
+expand_margin_top = 8.0
+expand_margin_right = 20.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vngp5"]
+bg_color = Color(0.9764706, 0, 0.13725491, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 10.0
+expand_margin_top = 5.0
+expand_margin_right = 10.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="Animation" id="Animation_8um5k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title/SubTitle/Against:offset_transform_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xim88"]
+resource_name = "subTitle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title/SubTitle/Against:offset_transform_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_koqhg"]
+_data = {
+&"RESET": SubResource("Animation_8um5k"),
+&"subTitle": SubResource("Animation_xim88")
+}
+
+[sub_resource type="Environment" id="Environment_cmrfp"]
+adjustment_enabled = true
+adjustment_contrast = 3.525
+adjustment_saturation = 2.0
+
+[sub_resource type="Compositor" id="Compositor_koqhg"]
+
+[node name="MainMenu" type="Control" unique_id=755797120]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShipBg" type="Control" parent="." unique_id=1334591735]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ship2" type="Sprite2D" parent="ShipBg" unique_id=2057599690]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(156, 329)
+rotation = 0.8918632
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_loo7a")
+
+[node name="Ship3" type="Sprite2D" parent="ShipBg" unique_id=1516450350]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(881, 368)
+rotation = -0.37175512
+texture = ExtResource("3_if7li")
+
+[node name="Water" type="ColorRect" parent="." unique_id=1915465009]
+z_index = -2
+material = SubResource("ShaderMaterial_bnhvo")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="VBoxContainer" parent="." unique_id=1176006998]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -265.0
+offset_top = 87.0
+offset_right = 206.0
+offset_bottom = 224.0
+grow_horizontal = 2
+
+[node name="Ship" type="Label" parent="Title" unique_id=344143791]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("2_853f1")
+theme_override_font_sizes/font_size = 80
+text = "Ship"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubTitle" type="HBoxContainer" parent="Title" unique_id=1849174351]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Space" type="HSplitContainer" parent="Title/SubTitle" unique_id=396627023]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+dragger_visibility = 1
+
+[node name="Against" type="Label" parent="Title/SubTitle" unique_id=1718733858]
+layout_mode = 2
+size_flags_vertical = 6
+offset_transform_enabled = true
+offset_transform_position = Vector2(-11, -10)
+offset_transform_rotation = -0.20943952
+theme_override_fonts/font = ExtResource("2_853f1")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_8um5k")
+theme_override_styles/focus = SubResource("StyleBoxFlat_vngp5")
+text = "Against"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="Control" parent="." unique_id=259369929]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 2.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+
+[node name="Play" type="Control" parent="Options" unique_id=65134174]
+anchors_preset = 0
+offset_left = -168.0
+offset_top = -25.0
+offset_right = -168.0
+offset_bottom = -25.0
+scale = Vector2(0.16, 0.18)
+size_flags_vertical = 3
+
+[node name="Texture" type="TouchScreenButton" parent="Options/Play" unique_id=780783306]
+position = Vector2(0, -160)
+texture_normal = ExtResource("3_ghw46")
+texture_pressed = ExtResource("4_ghw46")
+
+[node name="Label" type="Label" parent="Options/Play/Texture" unique_id=1023368105]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -204.5
+offset_right = 350.0
+offset_bottom = 204.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_853f1")
+theme_override_font_sizes/font_size = 250
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="Control" parent="Options" unique_id=469955995]
+anchors_preset = 0
+offset_left = -168.0
+offset_top = 137.0
+offset_right = -168.0
+offset_bottom = 137.0
+scale = Vector2(0.16, 0.18)
+size_flags_vertical = 3
+
+[node name="Texture" type="TouchScreenButton" parent="Options/Settings" unique_id=1781600757]
+position = Vector2(0, -160)
+texture_normal = ExtResource("3_ghw46")
+texture_pressed = ExtResource("4_ghw46")
+
+[node name="Label" type="Label" parent="Options/Settings/Texture" unique_id=1227780984]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -683.0
+offset_top = -204.5
+offset_right = 683.0
+offset_bottom = 204.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_853f1")
+theme_override_font_sizes/font_size = 250
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sound" type="Control" parent="Options" unique_id=1750393317]
+anchors_preset = 0
+offset_left = 573.75
+offset_top = 270.0
+offset_right = 573.75
+offset_bottom = 270.0
+scale = Vector2(0.4, 0.4)
+size_flags_vertical = 3
+
+[node name="Texture" type="TouchScreenButton" parent="Options/Sound" unique_id=2053754787]
+position = Vector2(15.625, -9.375)
+texture_normal = ExtResource("5_df05h")
+texture_pressed = ExtResource("6_8um5k")
+
+[node name="Version" type="Label" parent="." unique_id=422527719]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -74.0
+offset_right = 234.0
+offset_bottom = -12.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_853f1")
+theme_override_font_sizes/font_size = 20
+text = "Version: 0.1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Anim" type="AnimationPlayer" parent="." unique_id=15961773]
+libraries/ = SubResource("AnimationLibrary_koqhg")
+autoplay = &"subTitle"
+
+[node name="Env" type="WorldEnvironment" parent="." unique_id=750445455]
+environment = SubResource("Environment_cmrfp")
+compositor = SubResource("Compositor_koqhg")
