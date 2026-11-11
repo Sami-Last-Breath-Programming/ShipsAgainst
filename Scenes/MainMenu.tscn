@@ -86,11 +86,12 @@ _data = {
 }
 
 [sub_resource type="Environment" id="Environment_cmrfp"]
+background_mode = 3
+glow_intensity = 0.95
+fog_light_energy = 9.74
 adjustment_enabled = true
-adjustment_contrast = 3.525
-adjustment_saturation = 2.0
-
-[sub_resource type="Compositor" id="Compositor_koqhg"]
+adjustment_contrast = 1.02
+adjustment_saturation = 1.24
 
 [node name="MainMenu" type="Control" unique_id=755797120]
 layout_mode = 3
@@ -101,22 +102,39 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ShipBg" type="Control" parent="." unique_id=1334591735]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Ship2" type="Sprite2D" parent="ShipBg" unique_id=2057599690]
+[node name="Ship2" type="TextureRect" parent="ShipBg" unique_id=2060837486]
 texture_filter = 1
 texture_repeat = 1
-position = Vector2(156, 329)
+layout_mode = 0
+offset_left = -340.0
+offset_top = -51.99998
+offset_right = -274.0
+offset_bottom = 61.00002
 rotation = 0.8918632
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_loo7a")
 
-[node name="Ship3" type="Sprite2D" parent="ShipBg" unique_id=1516450350]
+[node name="Ship3" type="TextureRect" parent="ShipBg" unique_id=1534939954]
 texture_filter = 1
 texture_repeat = 1
-position = Vector2(881, 368)
+layout_mode = 0
+offset_left = 296.0
+offset_top = 55.0
+offset_right = 362.0
+offset_bottom = 168.0
 rotation = -0.37175512
 texture = ExtResource("3_if7li")
 
@@ -146,7 +164,7 @@ layout_mode = 2
 size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("2_853f1")
 theme_override_font_sizes/font_size = 80
-text = "Ship"
+text = "Ships"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -254,16 +272,23 @@ text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sound" type="Control" parent="Options" unique_id=1750393317]
-anchors_preset = 0
-offset_left = 573.75
-offset_top = 270.0
-offset_right = 573.75
-offset_bottom = 270.0
+[node name="Sound" type="Control" parent="." unique_id=1750393317]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -138.0
+offset_right = -141.0
+offset_bottom = -138.0
+grow_horizontal = 0
+grow_vertical = 0
 scale = Vector2(0.4, 0.4)
 size_flags_vertical = 3
 
-[node name="Texture" type="TouchScreenButton" parent="Options/Sound" unique_id=2053754787]
+[node name="Texture" type="TouchScreenButton" parent="Sound" unique_id=2053754787]
 position = Vector2(15.625, -9.375)
 texture_normal = ExtResource("5_df05h")
 texture_pressed = ExtResource("6_8um5k")
@@ -273,10 +298,8 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -74.0
-offset_right = 234.0
-offset_bottom = -12.0
+offset_top = -62.0
+offset_right = 226.0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_853f1")
 theme_override_font_sizes/font_size = 20
@@ -290,4 +313,3 @@ autoplay = &"subTitle"
 
 [node name="Env" type="WorldEnvironment" parent="." unique_id=750445455]
 environment = SubResource("Environment_cmrfp")
-compositor = SubResource("Compositor_koqhg")
