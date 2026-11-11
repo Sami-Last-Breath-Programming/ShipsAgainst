@@ -1,0 +1,27 @@
+# Godot-specific ignores
+.godot/
+.import/
+export_presets.cfg
+
+# Imported translations (if auto-generated)
+*.translation
+
+# Mono/C# specific ignores (Godot .NET)
+.mono/
+data_*/
+mono_project/
+.vs/
+.idea/
+.vscode/
+bin/
+obj/
+*.csproj.html
+
+# Build outputs & exports
+*.apk
+*.aab
+*.a
+*.ar
+*.app
+*.ipa
+*.exe
